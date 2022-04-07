@@ -156,28 +156,28 @@ Function: Filters reads out of a QIIME2 feature table according to a minimum rea
 
 ### Input
 
-      feature_table    : path to QIIME2 to feature table 
+      feature_table    : path to QIIME2 feature table 
 
       filtering_integer: Either an integer for even filtering across samples, or path to the 
                          Expected_False_Reads_Per_Index.csv output by index_jump.py
 
 ### Output
 
-      Return: Frequency filtered QIIME feature table of type FeatureTable[Frequency]
+      Return: Frequency filtered QIIME2 feature table of type FeatureTable[Frequency]
 
-      Output: 'freq_filt_table.qza' QIIME artifact of type FeatureTable[Frequency]
+      Output: 'freq_filt_table.qza' QIIME2 artifact of type FeatureTable[Frequency]
 
 ### Example Command Line Call
 
     python per_sample_filtering.py feature_table.qza Expected_False_Reads_Per_Index.csv
 
 Starting from a QIIME2 feature table consisting of 85 uniquely indexed samples. Within each sample are a number of
-different features with individually recorded frequencies. Below is a histogram of a single sample with index F02R16,
-which shows the frequency of each feature within the sample.
+different features with individually recorded frequencies. Below is a histogram of a single sample from our pool with 
+index F02R16, which shows the frequency of each feature within the sample.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/pre_filter.png?raw=true)
 
-After filtering, any feature with a frequency of less than 5 are filtered out. This is carried out for each sample in
-the pooled feature table.
+After filtering, any feature with a frequency of less than 5 is filtered out. This is carried out for each sample in
+the pooled feature table, either at a per-sample level according the input .csv or at a user specified integer level.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/post_filter.png?raw=true)
