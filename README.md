@@ -1,31 +1,42 @@
 # MetaPlex
 
-*BROADLY DESCRIBE THE METAPLEX WORKFLOW*
+***MetaPlex*** is a library preparation workflow and read processing toolkit for efficient and accurate COI
+metabarcoding on Ion Torrent sequencers. At its core, MetaPlex utilizes multiple pairs of uniquely indexed fusion
+primers which contain Ion sequencing adapters, Ion Xpress Barcodes, and the COI ANML primers, allowing for single-step
+PCR library preparation of dual-indexed reads.
 
-Including unique indexes (or barcodes) on individual samples in a pooled sequencing run is a great way to optimize
-efficiency when performing next-generation sequencing. Proper downstream analysis of these sequencing runs is dependent
-on properly assigning each sequence to its source sample through organized demultiplexing.
+![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/full_read.png?raw=true)
 
-In this example, 'Ion Xpress Barcodes' were utilized to uniquely index each sample on both the forward and the reverse
-end, with indexes 1 through 10 being placed on the Forward end, and 11 through 20 being placed on the Reverse end. In
-order to easily process these reads in QIIME2, both of these indexes must be linked, and placed together at the front of
-the reads.
+In order to easily process MetaPlex reads in popular analysis platform [QIIME2](https://qiime2.org), MetaPlex provides a
+toolkit capable of the following tasks:
 
-In some instances it may be necessary to filter out any read per-sample which doesn't appear at a minimum threshold
-count. Currently, QIIME2 offers no native way of performing this action.
+* **Remultiplexing** : reorganize dual-indexes to follow ['MultiplexedSingleEndBarcodeInSequence'] format
+
+* **Index jump calculating** : calculate the rate at which index jumps occur per sequencing run, and estimate the number
+  of false reads within the total pool as well as each individual sample within the pool
+
+* **Per-sample frequency based filtering** : remove false reads from each sample based off the calculated expectancies
+  either provided by the Index Jump calculator, or at user specified levels.
 
 ## Installation
 
-All MetaPlex tools should function properly if installed in a QIIME2 (>= 2021.8) conda environment
+All MetaPlex tools function properly when installed in
+a [QIIME2 conda environment](https://docs.qiime2.org/2022.2/install/native/#install-qiime-2-within-a-conda-environment) (>
+=2021.11)
 
       conda install -c conda-forge metaplex
 
 # Remultiplexing
 
 Function: takes dual-indexed reads, trims the 5' and 3' ends of the reads past the indexes, and moves the 3' index to
-immediately follow the 5' index. 
-This process allows for proper organized demultiplexing of dual-indexed outputs from
-single end sequencers (Ion Torrent, PacBio, Nanopore) in QIIME2 through a 'remultiplexing' process.
+immediately follow the 5' index (i.e. ['MultiplexedSingleEndBarcodeInSequence'] format)
+
+![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/standard_dual_index.png?raw=true)
+
+![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/remuxed_read.png?raw=true)
+
+This process allows for proper organized demultiplexing of dual-indexed outputs from single end sequencers (Ion Torrent,
+PacBio, Nanopore) in QIIME2.
 
 ## Usage
 
@@ -33,7 +44,8 @@ single end sequencers (Ion Torrent, PacBio, Nanopore) in QIIME2 through a 'remul
 
 The remultiplexing process can start from either a raw unmapped bam file such as what is given by an Ion Torrent
 sequencer, or a fastq/fastq.gz file. Aside from the sequences, all that is needed is a .csv containing all the index tag
-sequences used in the sequencing pool. This index map must follow the formatting of the one provided in this repo.
+sequences used in the sequencing pool. This index map must follow the formatting outlined below and in the provided
+example.
 
       sequenceFile : path to raw sequence file of type .fastq, .fastq.gz, or .bam
 
@@ -47,7 +59,8 @@ sequences used in the sequencing pool. This index map must follow the formatting
 
 ### Output
 
-Running this will produce a single gzipped fastq containing all sequences where a forward and reverse barcode was found.
+Remultiplexing will produce a single gzipped fastq containing all sequences where both a forward and reverse barcode
+were found.
 
 This format allows for immediate importing as a QIIME2 artifact of type ['MultiplexedSingleEndBarcodeInSequence']
 
@@ -57,16 +70,14 @@ This format allows for immediate importing as a QIIME2 artifact of type ['Multip
 
 ### Example Command Line Call
 
-To call from the command line:
-
         python remultiplex.py raw_seqs.bam indexes.csv
 
 # Index Jumping
 
-Function: calculate the rate at which index jumps occur for a single sequencing run, and estimate the number of false 
+Function: calculate the rate at which index jumps occur for a single sequencing run, and estimate the number of false
 reads within the total sample pool, and for each individual sample.
 
-Though this calculation process should be reproducible across many use cases, there are a few key requirements which 
+Though this calculation process should be reproducible across many use cases, there are a few key requirements which
 must be met for it to be accurate.
 
 1. Dual-indexed reads (i.e. an index or barcode placed on both the forward and reverse end) which has been demultiplexed
@@ -160,13 +171,13 @@ Function: Filters reads out of a QIIME2 feature table according to a minimum rea
 
     python per_sample_filtering.py feature_table.qza Expected_False_Reads_Per_Index.csv
 
-Starting from a QIIME2 feature table consisting of 85 uniquely indexed samples. Within each sample are a number
-of different features with individually recorded frequencies. Below is a histogram of a single sample with index F02R16,
+Starting from a QIIME2 feature table consisting of 85 uniquely indexed samples. Within each sample are a number of
+different features with individually recorded frequencies. Below is a histogram of a single sample with index F02R16,
 which shows the frequency of each feature within the sample.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/pre_filter.png?raw=true)
 
-After filtering, any feature with a frequency of less than 5 are filtered out.
-This is carried out for each sample in the pooled feature table.
+After filtering, any feature with a frequency of less than 5 are filtered out. This is carried out for each sample in
+the pooled feature table.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/post_filter.png?raw=true)
