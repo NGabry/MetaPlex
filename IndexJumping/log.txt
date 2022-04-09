@@ -1,4 +1,0 @@
-Calculated Average jump rate: 0.0003998336716482295
-Total number of false reads: 405 / 481749
-Total percent of false reads: 0.084%
-Maximum number of false reads expected in a single sample: 5
