@@ -88,6 +88,9 @@ def remultiplex(sequenceFile, indexFile):
     os.system('mv *.fastq fastqs| mv fwd_sort.txt fastqs| mv rev_sort.txt fastqs')
 
 
-if __name__ == '__main__':
-
+def main():
     remultiplex(sys.argv[1], sys.argv[2])
+
+
+if __name__ == '__main__':
+    main()

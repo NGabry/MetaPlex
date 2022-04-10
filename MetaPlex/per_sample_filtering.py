@@ -68,9 +68,12 @@ def per_sample_filter(feature_table, filtering_integer):
         return freq_filt_table
 
 
-if __name__ == '__main__':
+def main():
     if sys.argv[2].endswith('.csv'):
         per_sample_filter(sys.argv[1], sys.argv[2])
     else:
         per_sample_filter(sys.argv[1], int(sys.argv[2]))
 
+
+if __name__ == '__main__':
+    main()

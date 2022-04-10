@@ -9,6 +9,13 @@ setup(
     author_email='n.t.gabry@gmail.com',
     license='BSD 3-clause',
     packages=['metaplex'],
+    entry_points={
+        'console_scripts': [
+            'Metaplex-remultiplex=metaplex.remultiplexing:main',
+            'Metaplex-calculate-IJR=metaplex.index_jump:main',
+            'Metaplex-per-sample-filter=metaplex.per_sample_filtering:main'
+        ],
+    },
     install_requires=['numpy',
                       'pandas',
                       'cutadapt',

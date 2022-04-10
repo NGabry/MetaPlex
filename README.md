@@ -24,7 +24,13 @@ All MetaPlex tools function properly when installed in
 a [QIIME2 conda environment](https://docs.qiime2.org/2022.2/install/native/#install-qiime-2-within-a-conda-environment) (>
 =2021.11)
 
-      conda install -c conda-forge metaplex
+Install with conda:
+
+    conda install -c conda-forge metaplex
+
+Or with pip:
+    
+    pip install metaplex 
 
 # Remultiplexing
 
@@ -39,6 +45,10 @@ This process allows for proper organized demultiplexing of dual-indexed outputs 
 PacBio, Nanopore) in QIIME2.
 
 ## Usage
+
+### Example Command Line Call
+
+        Metaplex-remultiplex raw_seqs.fastq.gz indexes.csv
 
 ### Input
 
@@ -69,10 +79,6 @@ This format allows for immediate importing as a QIIME2 artifact of type ['Multip
 
       Output : remultiplexed_seqs.fastq.gz
 
-### Example Command Line Call
-
-        python remultiplex.py raw_seqs.bam indexes.csv
-
 ### Example Python Import
 
     from metaplex import remultiplexing
@@ -100,7 +106,11 @@ must be met for it to be accurate.
 
 ## Usage
 
-### Input
+### Example Command Line Call
+
+    Metaplex-calculate-IJR demultiplexed_seqs.qza Sample_Map.txt 01,11
+
+### Inputs
 
 This workflow requires starting from data which has been demultiplexed utilizing QIIME2. Specifically, we start with a
 data type SampleData[SequencesWithQuality], though it isn't necessary for the data to have quality values included.
@@ -114,16 +124,13 @@ data type SampleData[SequencesWithQuality], though it isn't necessary for the da
                           each index being a 2 digit zero padded string.
                           ex: [('01', '11')] or [('01', '11'), ('02','12')]
 
-### Output
+### Outputs
 
     Return : Integer value of maximum number of index jumps (false reads) expected in a single sample
 
     Output : Expected_False_Reads_Per_Index.csv file containing number of false reads expected in EACH sample
-            log.txt file containing summary statistics
+             log.txt file containing summary statistics
 
-### Example Command Line Call
-
-    python index_jump.py demultiplexed_seqs.qza Sample_Map.txt 01,11
 
 ### Example Python Import
 
@@ -169,22 +176,23 @@ Function: Filters reads out of a QIIME2 feature table according to a minimum rea
 
 ## Usage
 
-### Input
+### Example Command Line Call
 
-      feature_table    : path to QIIME2 feature table 
+    Metaplex-per-sample-filter feature_table.qza Expected_False_Read_Per_Index.csv
 
-      filtering_integer: Either an integer for even filtering across samples, or path to the 
-                         Expected_False_Read_Per_Index.csv output by index_jump.py
+### Inputs
+
+    feature_table    : path to QIIME2 feature table 
+
+    filtering_integer: Either an integer for even filtering across samples, or path to the 
+                       Expected_False_Read_Per_Index.csv output by index_jump.py
 
 ### Output
 
-      Return: Frequency filtered QIIME2 feature table of type FeatureTable[Frequency]
+    Return: Frequency filtered QIIME2 feature table of type FeatureTable[Frequency]
 
-      Output: 'freq_filt_table.qza' QIIME2 artifact of type FeatureTable[Frequency]
+    Output: 'freq_filt_table.qza' QIIME2 artifact of type FeatureTable[Frequency]
 
-### Example Command Line Call
-
-    python per_sample_filtering.py feature_table.qza Expected_False_Read_Per_Index.csv
 
 ### Example Python Import
 

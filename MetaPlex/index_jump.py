@@ -182,8 +182,7 @@ def calculate(demultiplexed_seqs, sample_map, calibrator_tag_pairs):
     return max_IJR
 
 
-if __name__ == '__main__':
-
+def main():
     if len(sys.argv) < 4:
         calculate(sys.argv[1], sys.argv[2], calibrator_tag_pairs=None)
 
@@ -193,3 +192,7 @@ if __name__ == '__main__':
             c_tag_pair = (tuple(sys.argv[i].split(',')))
             c_tags_list.append(c_tag_pair)
             calculate(sys.argv[1], sys.argv[2], c_tags_list)
+
+
+if __name__ == '__main__':
+    main()
