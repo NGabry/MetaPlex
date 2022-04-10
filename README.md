@@ -44,8 +44,9 @@ PacBio, Nanopore) in QIIME2.
 
 The remultiplexing process can start from either a raw unmapped bam file such as what is given by an Ion Torrent
 sequencer, or a fastq/fastq.gz file. Aside from the sequences, all that is needed is a .csv containing all the index tag
-sequences used in the sequencing pool. This index map must follow the formatting outlined below and in the provided
-example.
+sequences used in the sequencing pool. This index map must follow the formatting outlined
+in [the provided example](https://github.com/NGabry/MetaPlex/blob/main/reference_files/indexes.csv) (see below for
+details).
 
       sequenceFile : path to raw sequence file of type .fastq, .fastq.gz, or .bam
 
@@ -59,8 +60,8 @@ example.
 
 ### Output
 
-Remultiplexing will produce a single gzipped fastq containing all sequences where both a forward and reverse barcode
-were found.
+Remultiplexing produces a single gzipped fastq containing all sequences where both a forward and reverse barcode were
+found.
 
 This format allows for immediate importing as a QIIME2 artifact of type ['MultiplexedSingleEndBarcodeInSequence']
 
@@ -71,6 +72,12 @@ This format allows for immediate importing as a QIIME2 artifact of type ['Multip
 ### Example Command Line Call
 
         python remultiplex.py raw_seqs.bam indexes.csv
+
+### Example Python Import
+
+    from metaplex import remultiplexing
+    
+    remultiplexing.remultiplex('raw_seqs.fastq.gz', 'indexes.csv')
 
 # Index Jumping
 
@@ -118,6 +125,12 @@ data type SampleData[SequencesWithQuality], though it isn't necessary for the da
 
     python index_jump.py demultiplexed_seqs.qza Sample_Map.txt 01,11
 
+### Example Python Import
+
+    from metaplex import index_jump
+    
+    index_jump.calculate('demultiplexed_seqs.qza', 'Sample_Map.txt', [('01', '11')])
+
 ## Detailed Index Jump Calculation Workflow
 
 The jump rate of each calibrator tag is calculated by taking the false reads with that tag, and dividing them by the
@@ -145,8 +158,10 @@ With this rate, we can then get an estimate for the total number of false reads 
 read count by the jump rate. This can be used to give a good estimate of the overall percentage of true and false reads
 in the data set.
 
-Additionally, we generate a useful table (Expected_False_Read_Per_Index.csv) to assist in setting a per-sample filtering
-level by listing the expected number of false reads that exist in each sample.
+Additionally, we generate a useful
+table ([Expected_False_Read_Per_Index.csv](https://github.com/NGabry/MetaPlex/blob/main/sample_data/IndexJumping/Expected_False_Read_Per_Index.csv))
+to assist in setting a per-sample filtering level by listing the expected number of false reads that exist in each
+sample.
 
 # PerSampleFiltering
 
@@ -159,7 +174,7 @@ Function: Filters reads out of a QIIME2 feature table according to a minimum rea
       feature_table    : path to QIIME2 feature table 
 
       filtering_integer: Either an integer for even filtering across samples, or path to the 
-                         Expected_False_Reads_Per_Index.csv output by index_jump.py
+                         Expected_False_Read_Per_Index.csv output by index_jump.py
 
 ### Output
 
@@ -169,15 +184,22 @@ Function: Filters reads out of a QIIME2 feature table according to a minimum rea
 
 ### Example Command Line Call
 
-    python per_sample_filtering.py feature_table.qza Expected_False_Reads_Per_Index.csv
+    python per_sample_filtering.py feature_table.qza Expected_False_Read_Per_Index.csv
 
-Starting from a QIIME2 feature table consisting of 85 uniquely indexed samples. Within each sample are a number of
-different features with individually recorded frequencies. Below is a histogram of a single sample from our pool with 
+### Example Python Import
+
+    from metaplex import per_sample_filtering
+    
+    per_sample_filtering.per_sample_filter('feature_table.qza', 'Expected_False_Read_Per_Index.csv')
+
+Here we start from a QIIME2 feature table consisting of 85 uniquely indexed samples. Within each sample are a number of
+different features with individually recorded frequencies. Below is a histogram of a single sample from our pool with
 index F02R16, which shows the frequency of each feature within the sample.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/pre_filter.png?raw=true)
 
-After filtering, any feature with a frequency of less than 5 is filtered out. This is carried out for each sample in
-the pooled feature table, either at a per-sample level according the input .csv or at a user specified integer level.
+After per sample filtering with our input .csv, any feature with a frequency of less than 5 is filtered out of the
+F02R16 sample. This is carried out for each sample in the pooled feature table according to specifications in the sample
+map, or at a single depth across all samples as specified by the user.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/post_filter.png?raw=true)
