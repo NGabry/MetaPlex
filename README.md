@@ -1,4 +1,5 @@
 # MetaPlex
+
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/installer/conda.svg)](https://conda.anaconda.org/bioconda) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/platforms.svg)](https://anaconda.org/bioconda/metaplex) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/downloads.svg)](https://anaconda.org/bioconda/metaplex) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/latest_release_date.svg)](https://anaconda.org/bioconda/metaplex)
 
 ***MetaPlex*** is a library preparation workflow and read processing toolkit for efficient and accurate COI
@@ -8,7 +9,8 @@ PCR library preparation of dual-indexed reads.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/full_read.png?raw=true)
 
-For a full list of MetaPlex primers and library preparation information, [see here](https://github.com/NGabry/MetaPlex/blob/main/library_prep)
+For a full list of MetaPlex primers and library preparation
+information, [see here](https://github.com/NGabry/MetaPlex/blob/main/library_prep)
 
 In order to easily process MetaPlex reads in popular analysis platform [QIIME2](https://qiime2.org), MetaPlex provides a
 toolkit capable of the following tasks:
@@ -32,7 +34,7 @@ Install with conda:
     conda install -c bioconda/label/main metaplex
 
 Or with pip:
-    
+
     pip install metaplex 
 
 # Remultiplexing
@@ -134,7 +136,6 @@ data type SampleData[SequencesWithQuality], though it isn't necessary for the da
     Output : Expected_False_Reads_Per_Index.csv file containing number of false reads expected in EACH sample
              log.txt file containing summary statistics
 
-
 ### Example Python Import
 
     from metaplex import index_jump
@@ -196,7 +197,6 @@ Function: Filters reads out of a QIIME2 feature table according to a minimum rea
 
     Output: 'freq_filt_table.qza' QIIME2 artifact of type FeatureTable[Frequency]
 
-
 ### Example Python Import
 
     from metaplex import per_sample_filtering
@@ -214,3 +214,16 @@ F02R16 sample. This is carried out for each sample in the pooled feature table a
 map, or at a single depth across all samples as specified by the user.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/post_filter.png?raw=true)
+
+# Sample Data
+
+If you are interested in playing with [sample data](https://github.com/NGabry/MetaPlex/blob/main/sample_data) prior to using any of these tools, we provide some test files
+in this repository.
+
+This sample data is a sub sample of reads from a MetaPlex metabarocding run on an Ion S5 Prime sequencer.
+
+These are COI reads consisting of 75 True tag combinations, including F01 R11 calibrator tags.
+
+Along with Jupyter Notebooks walking through each MetaPlex tool, we also provide [transition notebooks](https://github.com/NGabry/MetaPlex/blob/main/transition_notebooks) which outline
+getting your data from one usable step to the next (i.e. remultiplexed seqs to demultiplexed seqs, and demultiplexed
+seqs to a feature table)
