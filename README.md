@@ -1,4 +1,5 @@
 # MetaPlex
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/installer/conda.svg)](https://conda.anaconda.org/bioconda) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/platforms.svg)](https://anaconda.org/bioconda/metaplex) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/downloads.svg)](https://anaconda.org/bioconda/metaplex) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/latest_release_date.svg)](https://anaconda.org/bioconda/metaplex)
 
 ***MetaPlex*** is a library preparation workflow and read processing toolkit for efficient and accurate COI
 metabarcoding on Ion Torrent sequencers. At its core, MetaPlex utilizes multiple pairs of uniquely indexed fusion
@@ -6,6 +7,8 @@ primers which contain Ion sequencing adapters, Ion Xpress Barcodes, and the COI 
 PCR library preparation of dual-indexed reads.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/full_read.png?raw=true)
+
+For a full list of MetaPlex primers and library preparation information, [see here](https://github.com/NGabry/MetaPlex/blob/main/library_prep)
 
 In order to easily process MetaPlex reads in popular analysis platform [QIIME2](https://qiime2.org), MetaPlex provides a
 toolkit capable of the following tasks:

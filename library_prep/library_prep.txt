@@ -1,0 +1,20 @@
+Library Preparation (Jusino et al. 2019: doi 10.1111/1755-0998.12951)
+
+Master Mix: per 15 μl reaction: 
+
+    7.88 μl DNA‐free H2O
+    3 μl Green GoTaq 5x buffer (Promega)
+    0.12 μl of 20 mg/ml BSA (New England BioLabs) 
+    0.3 μl of 10 mM dNTPs (Promega)
+    0.3 μl of each 10 μM primer
+    0.1 μl of 5u/μl GoTaq polymerase (Promega)
+
+
+Thermal Cycler conditions:
+
+	94°C for 60 s; 
+	5 cycles of: 94°C for 60 s, 45°C for 90 s, 72°C for 90 s; 
+	35 cycles of: 94°C for 60 s, 50°C for 90 s, 72°C for 60 s; 
+	72°C for 7 min
+	10°C for ever. 
+
