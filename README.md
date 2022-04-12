@@ -155,13 +155,7 @@ This method of calculating jump rate based off of calibrator tags offers increas
 jump rate based off of just the total false reads within a pool.
 
 In using calibrator tags we are able to detect every instance in which a tag jump occurred in regard to a single index
-tag (barring any jumps that don't change sample assignment). In calculating this metric using non-calibrator tags, we
-lose this level of clarity. For example, if in the above example F01R12 and F01R15 were both True samples, we would not
-be able to flag the jumps which occurred in these samples as false, and would conclude that no jumps occurred within our
-pool. This example, while extreme, demonstrates how with each loss of a calibrator pair, our estimate of the jump rates
-becomes less exact.
-
-Ultimately this estimate is conservative, as it doesn't take into account indexes which jump but don't actually change
+tag. Ultimately this estimate is conservative, as it doesn't take into account indexes which jump but don't actually change
 the sample assignment, such as the 11 index jumping from an F01R11 sample to another F01R11 sample, nor does it account
 for the potential for indexes to jump at differential rates.
 
@@ -171,8 +165,10 @@ in the data set.
 
 Additionally, we generate a useful
 table ([Expected_False_Read_Per_Index.csv](https://github.com/NGabry/MetaPlex/blob/main/sample_data/IndexJumping/Expected_False_Read_Per_Index.csv))
-to assist in setting a per-sample filtering level by listing the expected number of false reads that exist in each
-sample.
+with false read estimates calculated per sample taking into account individual tag abundances in the sample pool. For 
+a more in depth look at these calculations take a look at the Jupyter-Notebook provided [here](https://github.com/NGabry/MetaPlex/blob/main/sample_data/IndexJumping/index_jump.ipynb).
+
+This csv can then be used to assist in setting a per-sample filtering levels for additional quality control (see PerSampleFiltering).
 
 # PerSampleFiltering
 
