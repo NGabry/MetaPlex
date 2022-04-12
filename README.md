@@ -1,6 +1,6 @@
 # MetaPlex
 
-[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/installer/conda.svg)](https://conda.anaconda.org/bioconda) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/platforms.svg)](https://anaconda.org/bioconda/metaplex) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/downloads.svg)](https://anaconda.org/bioconda/metaplex) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/latest_release_date.svg)](https://anaconda.org/bioconda/metaplex)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/installer/conda.svg)](https://conda.anaconda.org/bioconda) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/platforms.svg)](https://anaconda.org/bioconda/metaplex)  [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/latest_release_date.svg)](https://anaconda.org/bioconda/metaplex)
 
 ***MetaPlex*** is a library preparation workflow and read processing toolkit for efficient and accurate COI
 metabarcoding on Ion Torrent sequencers. At its core, MetaPlex utilizes multiple pairs of uniquely indexed fusion
