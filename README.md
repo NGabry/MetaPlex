@@ -32,7 +32,7 @@ a [QIIME2 conda environment](https://docs.qiime2.org/2022.2/install/native/#inst
 
 Install with conda:
 
-    conda install -c bioconda/label/main metaplex
+    conda install -c bioconda metaplex
 
 Or with pip:
 
