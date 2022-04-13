@@ -25,6 +25,10 @@ toolkit capable of the following tasks:
 * **Per-sample frequency based filtering** : remove false reads from each sample based off the calculated expectancies
   either provided by the Index Jump calculator, or at user specified levels.
 
+* **All-sample length based filtering** : remove sequences below a length threshold from QIIME2 FeatureTable[Frequency]
+ and FeatureData[Sequence] artifacts.
+ 
+ 
 ## Installation
 
 All MetaPlex tools function properly when installed in
