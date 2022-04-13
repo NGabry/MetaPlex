@@ -17,15 +17,15 @@ information, [see here](https://github.com/NGabry/MetaPlex/blob/main/library_pre
 In order to easily process MetaPlex reads in popular analysis platform [QIIME2](https://qiime2.org), MetaPlex provides a
 toolkit capable of the following tasks:
 
-* **Remultiplexing** : reorganize dual-indexes to follow ['MultiplexedSingleEndBarcodeInSequence'] format
+* [**Remultiplexing**](#Remultiplexing) : reorganize dual-indexes to follow ['MultiplexedSingleEndBarcodeInSequence'] format
 
-* **Index jump calculating** : calculate the rate at which index jumps occur per sequencing run, and estimate the number
+* [**Index jump calculating**](#Index Jumping) : calculate the rate at which index jumps occur per sequencing run, and estimate the number
   of false reads within the total pool as well as each individual sample within the pool
 
-* **Per-sample frequency based filtering** : remove false reads from each sample based off the calculated expectancies
+* [**Per-sample frequency based filtering**](#Per Sample Filtering) : remove false reads from each sample based off the calculated expectancies
   either provided by the Index Jump calculator, or at user specified levels.
 
-* **All-sample length based filtering** : remove sequences below a length threshold from QIIME2 FeatureTable[Frequency]
+* [**All-sample length based filtering**](#Length Filtering) : remove sequences below a length threshold from QIIME2 FeatureTable[Frequency]
  and FeatureData[Sequence] artifacts.
  
  
@@ -178,7 +178,7 @@ provided [here](https://github.com/NGabry/MetaPlex/blob/main/sample_data/IndexJu
 This csv can then be used to assist in setting a per-sample filtering levels for additional quality control (see
 PerSampleFiltering).
 
-# PerSampleFiltering
+# Per Sample Filtering
 
 Function: Filters reads out of a QIIME2 feature table according to a minimum read count requirement *per sample*
 
@@ -219,7 +219,7 @@ map, or at a single depth across all samples as specified by the user.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/post_filter.png?raw=true)
 
-# LengthFiltering
+# Length Filtering
 
 Function: Filters reads out of a QIIME2 feature table and rep-seqs file according to a minimum length requirement.
 
