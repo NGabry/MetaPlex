@@ -19,13 +19,13 @@ toolkit capable of the following tasks:
 
 * [**Remultiplexing**](#Remultiplexing) : reorganize dual-indexes to follow ['MultiplexedSingleEndBarcodeInSequence'] format
 
-* [**Index jump calculating**](#Index Jumping) : calculate the rate at which index jumps occur per sequencing run, and estimate the number
+* [**Index jump calculating**](#Index-Jumping) : calculate the rate at which index jumps occur per sequencing run, and estimate the number
   of false reads within the total pool as well as each individual sample within the pool
 
-* [**Per-sample frequency based filtering**](#Per Sample Filtering) : remove false reads from each sample based off the calculated expectancies
+* [**Per-sample frequency based filtering**](#Per-Sample-Filtering) : remove false reads from each sample based off the calculated expectancies
   either provided by the Index Jump calculator, or at user specified levels.
 
-* [**All-sample length based filtering**](#Length Filtering) : remove sequences below a length threshold from QIIME2 FeatureTable[Frequency]
+* [**All-sample length based filtering**](#Length-Filtering) : remove sequences below a length threshold from QIIME2 FeatureTable[Frequency]
  and FeatureData[Sequence] artifacts.
  
  
