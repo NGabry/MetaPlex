@@ -5,6 +5,18 @@ from qiime2 import Artifact
 
 
 def per_sample_filter(feature_table, filtering_integer):
+    '''
+    Filters reads out of a QIIME2 feature table according to a minimum read count requirement *per sample*
+
+    feature_table    : path to QIIME2 feature table
+
+    filtering_integer: Either an integer for even filtering across samples, or path to the
+                       Expected_False_Read_Per_Index.csv output by index_jump.py
+
+    Return: Frequency filtered QIIME2 feature table of type FeatureTable[Frequency]
+
+    Output: 'freq_filt_table.qza' QIIME2 artifact of type FeatureTable[Frequency]
+    '''
 
     # Importing from a biom table
     try:

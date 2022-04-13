@@ -5,7 +5,19 @@ import sys
 
 
 def remultiplex(sequenceFile, indexFile):
+    '''
+    Takes dual-indexed reads, trims the 5' and 3' ends of the reads past the indexes, and moves the 3' index to
+    immediately follow the 5' index (i.e. ['MultiplexedSingleEndBarcodeInSequence'] format)
 
+    sequenceFile : path to raw sequence file of type .fastq, .fastq.gz, or .bam
+
+    indexFile    : path to .csv containing all the index tag sequences that are present in the sequencing pool. This .csv
+                   should be formatted as specified below (See indexes.csv for reference)
+
+    Return : None
+
+    Output : remultiplexed_seqs.fastq.gz
+    '''
     if sequenceFile.endswith('.bam'):
         convert = str('samtools fastq '+sequenceFile+' > raw_seqs.fastq')
         subprocess.run(convert, shell=True)
