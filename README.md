@@ -1,6 +1,6 @@
 # MetaPlex
 
-[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/installer/conda.svg)](https://conda.anaconda.org/bioconda) [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/metaplex/README.html)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/installer/conda.svg)](https://conda.anaconda.org/bioconda) [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/metaplex/README.html) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/version.svg)](https://anaconda.org/bioconda/metaplex)
 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/downloads.svg)](https://anaconda.org/bioconda/metaplex) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/platforms.svg)](https://anaconda.org/bioconda/metaplex)  [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/latest_release_date.svg)](https://anaconda.org/bioconda/metaplex)
 
