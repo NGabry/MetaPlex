@@ -1,7 +1,8 @@
 # MetaPlex
 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/installer/conda.svg)](https://conda.anaconda.org/bioconda) [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/metaplex/README.html)
-[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/platforms.svg)](https://anaconda.org/bioconda/metaplex)  [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/latest_release_date.svg)](https://anaconda.org/bioconda/metaplex)
+
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/downloads.svg)](https://anaconda.org/bioconda/metaplex) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/platforms.svg)](https://anaconda.org/bioconda/metaplex)  [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/latest_release_date.svg)](https://anaconda.org/bioconda/metaplex)
 
 ***MetaPlex*** is a library preparation workflow and read processing toolkit for efficient and accurate COI
 metabarcoding on Ion Torrent sequencers. At its core, MetaPlex utilizes multiple pairs of uniquely indexed fusion
@@ -156,9 +157,9 @@ This method of calculating jump rate based off of calibrator tags offers increas
 jump rate based off of just the total false reads within a pool.
 
 In using calibrator tags we are able to detect every instance in which a tag jump occurred in regard to a single index
-tag. Ultimately this estimate is conservative, as it doesn't take into account indexes which jump but don't actually change
-the sample assignment, such as the 11 index jumping from an F01R11 sample to another F01R11 sample, nor does it account
-for the potential for indexes to jump at differential rates.
+tag. Ultimately this estimate is conservative, as it doesn't take into account indexes which jump but don't actually
+change the sample assignment, such as the 11 index jumping from an F01R11 sample to another F01R11 sample, nor does it
+account for the potential for indexes to jump at differential rates.
 
 With this rate, we can then get an estimate for the total number of false reads in the data set by multiplying the total
 read count by the jump rate. This can be used to give a good estimate of the overall percentage of true and false reads
@@ -166,10 +167,12 @@ in the data set.
 
 Additionally, we generate a useful
 table ([Expected_False_Read_Per_Index.csv](https://github.com/NGabry/MetaPlex/blob/main/sample_data/IndexJumping/Expected_False_Read_Per_Index.csv))
-with false read estimates calculated per sample taking into account individual tag abundances in the sample pool. For 
-a more in depth look at these calculations take a look at the Jupyter-Notebook provided [here](https://github.com/NGabry/MetaPlex/blob/main/sample_data/IndexJumping/index_jump.ipynb).
+with false read estimates calculated per sample taking into account individual tag abundances in the sample pool. For a
+more in depth look at these calculations take a look at the Jupyter-Notebook
+provided [here](https://github.com/NGabry/MetaPlex/blob/main/sample_data/IndexJumping/index_jump.ipynb).
 
-This csv can then be used to assist in setting a per-sample filtering levels for additional quality control (see PerSampleFiltering).
+This csv can then be used to assist in setting a per-sample filtering levels for additional quality control (see
+PerSampleFiltering).
 
 # PerSampleFiltering
 
@@ -212,15 +215,62 @@ map, or at a single depth across all samples as specified by the user.
 
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/post_filter.png?raw=true)
 
+# LengthFiltering
+
+Function: Filters reads out of a QIIME2 feature table and rep-seqs file according to a minimum length requirement.
+
+## Usage
+
+### Example Command Line Call
+
+    Metaplex-length-filter feature_table.qza rep_seqs.qza 120
+
+### Inputs
+
+    feature_table    : path to QIIME2 feature table 
+
+    rep_seqs         : path to QIIME2 representative sequences (rep-seqs) file
+
+    filtering_integer: An integer threshold for sequence length. All sequences shorter than specified 
+                       length will be removed
+
+### Output
+
+    Return: Frequency filtered QIIME2 feature table of type FeatureTable[Frequency]
+            Frequency filtered QIIME2 feature table of type FeatureData[Sequence]
+
+    Output: 'length_filt_table.qza' QIIME2 artifact of type FeatureTable[Frequency]
+            'length_filt_seqs.qza' QIIME2 artifact of type FeatureData[Sequence]
+
+### Example Python Import
+
+    from metaplex import length_filtering
+    
+    length_filtering.length_filter('feature_table.qza', 'rep_seqs.qza', 120)
+
+In this example, our target amplicon has a length of ~180bp. As seen below, there are a handful of reads which are much 
+shorter than our target. 
+
+![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/pre_filter_length.png?raw=true)
+
+Here we set our filtering integer to 120 base pairs.
+After length filtering, any representative sequence with a bp length of less than our specified integer of 120 is
+filtered out of the sample pool. 
+
+![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/post_filter_length.png?raw=true)
+
+This returns both a new feature table, and representative sequences file.
+
 # Sample Data
 
-If you are interested in playing with [sample data](https://github.com/NGabry/MetaPlex/blob/main/sample_data) prior to using any of these tools, we provide some test files
-in this repository.
+If you are interested in playing with [sample data](https://github.com/NGabry/MetaPlex/blob/main/sample_data) prior to
+using any of these tools, we provide some test files in this repository.
 
-This sample data is a sub sample of reads from a MetaPlex metabarocding run on an Ion S5 Prime sequencer.
+This sample data is a sub sample of reads from a MetaPlex metabarcoding run on an Ion S5 Prime sequencer.
 
 These are COI reads consisting of 75 True tag combinations, including F01 R11 calibrator tags.
 
-Along with Jupyter Notebooks walking through each MetaPlex tool, we also provide [transition notebooks](https://github.com/NGabry/MetaPlex/blob/main/transition_notebooks) which outline
-getting your data from one usable step to the next (i.e. remultiplexed seqs to demultiplexed seqs, and demultiplexed
-seqs to a feature table)
+Along with Jupyter Notebooks walking through each MetaPlex tool, we also
+provide [transition notebooks](https://github.com/NGabry/MetaPlex/blob/main/transition_notebooks) which outline getting
+your data from one usable step to the next (i.e. remultiplexed seqs to demultiplexed seqs, and demultiplexed seqs to a
+feature table)
