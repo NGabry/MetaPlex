@@ -13,15 +13,15 @@ setup(
         'console_scripts': [
             'Metaplex-remultiplex=metaplex.remultiplexing:main',
             'Metaplex-calculate-IJR=metaplex.index_jump:main',
-            'Metaplex-per-sample-filter=metaplex.per_sample_filtering:main'
-            'Metaplex-length-filter=metaplex.length_filtering:main'
+            'Metaplex-per-sample-filter=metaplex.per_sample_filtering:main',
+            'Metaplex-length-filter=metaplex.length_filtering:main',
         ],
     },
     install_requires=['numpy',
                       'pandas',
                       'cutadapt',
                       'biom-format',
-                      'biopython'
+                      'biopython',
                       ],
 
     classifiers=[
