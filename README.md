@@ -243,8 +243,8 @@ Function: Filters reads out of a QIIME2 feature table and rep-seqs file accordin
     Return: Frequency filtered QIIME2 feature table of type FeatureTable[Frequency]
             Frequency filtered QIIME2 feature table of type FeatureData[Sequence]
 
-    Output: 'length_filt_table.qza' QIIME2 artifact of type FeatureTable[Frequency]
-            'length_filt_seqs.qza' QIIME2 artifact of type FeatureData[Sequence]
+    Output: 'length_filt_table{length}.qza' QIIME2 artifact of type FeatureTable[Frequency]
+            'length_filt_seqs{length}.qza' QIIME2 artifact of type FeatureData[Sequence]
 
 ### Example Python Import
 
