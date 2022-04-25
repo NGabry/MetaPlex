@@ -1,9 +1,12 @@
 ![alt text](https://github.com/NGabry/MetaPlex/blob/main/images/MetaPlex_Diamond.png?raw=true)
 
-[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/installer/conda.svg)](https://conda.anaconda.org/bioconda) [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/metaplex/README.html) [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/platforms.svg)](https://anaconda.org/bioconda/metaplex)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/installer/conda.svg)](https://conda.anaconda.org/bioconda) 
+[![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/metaplex/README.html) 
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/downloads.svg)](https://anaconda.org/bioconda/metaplex)
 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/version.svg)](https://anaconda.org/bioconda/metaplex)
-[![Downloads](https://pepy.tech/badge/metaplex)](https://pepy.tech/project/metaplex)   [![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/latest_release_date.svg)](https://anaconda.org/bioconda/metaplex)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/license.svg)](https://anaconda.org/bioconda/metaplex)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/metaplex/badges/platforms.svg)](https://anaconda.org/bioconda/metaplex)
 
 ***MetaPlex*** is a library preparation workflow and read processing toolkit for efficient and accurate COI
 metabarcoding on Ion Torrent sequencers. At its core, MetaPlex utilizes multiple pairs of uniquely indexed fusion
