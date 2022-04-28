@@ -42,6 +42,7 @@ def calculate(demultiplexed_seqs, sample_map, calibrator_tag_pairs):
 
     # Load in demultiplexed sequences from path and Summarize
     demux = Artifact.load(demultiplexed_seqs)
+    print('Demultiplexed sequences loaded... Extracting per sample summaries to tsvs directory \n . \n . \n .')
     demux_summary = summarize(demux)
     demux_viz = demux_summary.visualization
 
@@ -75,6 +76,7 @@ def calculate(demultiplexed_seqs, sample_map, calibrator_tag_pairs):
 
     else:
         # Error flagging for Calibrator Tag input: Scripting / Jupyter-Notebook
+        print('Validating Calibrator Tag input... \n . \n . \n .')
         if not all(isinstance(item, tuple) for item in calibrator_tag_pairs):
             raise TypeError(
                 'Calibrator Tag Index identifiers are not input in proper format. Should be List of Tuples.')
@@ -106,6 +108,7 @@ def calculate(demultiplexed_seqs, sample_map, calibrator_tag_pairs):
                                                       f'usage as calibrator tags. Should only have one true sequence ' \
                                                       f'specified in sample map.'
 
+            print(f'All checks passed! Calculating Index Jump rate based off calibrator tags {fwd, rev}')
             # Calculations
             fwd_False       = fwd_df[fwd_df['True_False'] == 0]
             fwd_jump_rate   = (fwd_False['forward sequence count'].sum())/(fwd_df['forward sequence count'].sum())
@@ -167,7 +170,8 @@ def calculate(demultiplexed_seqs, sample_map, calibrator_tag_pairs):
 
     # Export csv with expected false reads per sample
     out_df = pd.DataFrame(indexes_exp_false, columns=['SampleIndex', 'Expected False Reads'])
-    out_df.to_csv('Expected_False_Read_Per_Index.csv', index=False)
+    print('Exporting recommended per-sample filtering levels to Expected_False_Reads_Per_Index.csv')
+    out_df.to_csv('Expected_False_Reads_Per_Index.csv', index=False)
 
     # Text output to log.txt of some summary statistics
     max_IJR = out_df['Expected False Reads'].max()
