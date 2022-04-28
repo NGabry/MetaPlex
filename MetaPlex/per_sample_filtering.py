@@ -11,7 +11,7 @@ def per_sample_filter(feature_table, filtering_integer):
     feature_table    : path to QIIME2 feature table
 
     filtering_integer: Either an integer for even filtering across samples, or path to the
-                       Expected_False_Read_Per_Index.csv output by index_jump.py
+                       Expected_False_Reads_Per_Index.csv output by index_jump.py
 
     Return: Frequency filtered QIIME2 feature table of type FeatureTable[Frequency]
 

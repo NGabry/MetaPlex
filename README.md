@@ -174,7 +174,7 @@ read count by the jump rate. This can be used to give a good estimate of the ove
 in the data set.
 
 Additionally, we generate a useful
-table ([Expected_False_Read_Per_Index.csv](https://github.com/NGabry/MetaPlex/blob/main/sample_data/IndexJumping/Expected_False_Read_Per_Index.csv))
+table ([Expected_False_Reads_Per_Index.csv](https://github.com/NGabry/MetaPlex/blob/main/sample_data/IndexJumping/Expected_False_Read_Per_Index.csv))
 with false read estimates calculated per sample taking into account individual tag abundances in the sample pool. For a
 more in depth look at these calculations take a look at the Jupyter-Notebook
 provided [here](https://github.com/NGabry/MetaPlex/blob/main/sample_data/IndexJumping/index_jump.ipynb).
@@ -190,14 +190,14 @@ Function: Filters reads out of a QIIME2 feature table according to a minimum rea
 
 ### Example Command Line Call
 
-    Metaplex-per-sample-filter feature_table.qza Expected_False_Read_Per_Index.csv
+    Metaplex-per-sample-filter feature_table.qza Expected_False_Reads_Per_Index.csv
 
 ### Inputs
 
     feature_table    : path to QIIME2 feature table 
 
     filtering_integer: Either an integer for even filtering across samples, or path to the 
-                       Expected_False_Read_Per_Index.csv output by index_jump.py
+                       Expected_False_Reads_Per_Index.csv output by index_jump.py
 
 ### Output
 
@@ -209,7 +209,7 @@ Function: Filters reads out of a QIIME2 feature table according to a minimum rea
 
     from metaplex import per_sample_filtering
     
-    per_sample_filtering.per_sample_filter('feature_table.qza', 'Expected_False_Read_Per_Index.csv')
+    per_sample_filtering.per_sample_filter('feature_table.qza', 'Expected_False_Reads_Per_Index.csv')
 
 Here we start from a QIIME2 feature table consisting of 85 uniquely indexed samples. Within each sample are a number of
 different features with individually recorded frequencies. Below is a histogram of a single sample from our pool with
