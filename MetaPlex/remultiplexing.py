@@ -93,9 +93,6 @@ def remultiplex(sequenceFile, indexFile):
 
     os.system('gzip remultiplexed_seqs.fastq')
 
-    os.system('mkdir original_sequences')
-    os.system('mv '+sequenceFile+' original_sequences/')
-
     os.system('mkdir fastqs')
     os.system('mv *.fastq fastqs| mv fwd_sort.txt fastqs| mv rev_sort.txt fastqs')
 
