@@ -86,7 +86,7 @@ def length_filter(feature_table, representative_sequences, length_to_filter):
     rep_seqs_filt.filtered_data.save(f'length_filt_seqs_{length_to_filter}.qza')
     table_filt.filtered_table.save(f'length_filt_table_{length_to_filter}.qza')
 
-    return rep_seqs_filt, table_filt
+    return table_filt, rep_seqs_filt
 
 
 def main():
