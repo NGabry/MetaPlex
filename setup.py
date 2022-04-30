@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Metaplex',
-    version='1.0.0',
+    version='1.1.0',
     description='Read Processing and Quality Control Toolkit for Dual-Indexed Metabarcoding',
     url='https://github.com/NGabry/MetaPlex',
     author='Nick Gabry',
